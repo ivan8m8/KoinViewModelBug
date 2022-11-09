@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.ivan8m8.koinviewmodelbug.databinding.ActivityMainBinding
 
+@AndroidEntryPoint
 open class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

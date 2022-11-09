@@ -1,3 +1,7 @@
 package io.github.ivan8m8.koinviewmodelbug
 
-class MyFlavoredViewModel(param: String) : MyViewModel(param) {}
+import androidx.lifecycle.SavedStateHandle
+
+class MyFlavoredViewModel(
+    handle: SavedStateHandle
+) : MyViewModel(handle)

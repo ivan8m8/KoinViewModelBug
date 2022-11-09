@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.ivan8m8.koinviewmodelbug.databinding.FragmentMyBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
-import org.koin.core.qualifier.named
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
+@AndroidEntryPoint
 class MyFragment : Fragment() {
 
     private var _binding: FragmentMyBinding? = null
@@ -22,9 +22,7 @@ class MyFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: MyViewModel by viewModel(named(Constants.MY_VIEW_MODEL)) {
-        parametersOf(requireArguments().getString(KEY)!!)
-    }
+    private val viewModel: MyViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
