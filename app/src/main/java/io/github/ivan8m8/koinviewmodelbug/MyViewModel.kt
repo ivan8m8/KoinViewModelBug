@@ -14,7 +14,7 @@ open class MyViewModel @Inject constructor(
     val liveData = MutableLiveData<String>()
 
     init {
-        println("MY_TAG init $this")
+        println("MY_TAG MyViewModel init $this")
         liveData.value = savedStateHandle.get<String>("key")!!.toString() + "!"
     }
 }
