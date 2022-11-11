@@ -7,8 +7,8 @@ import org.koin.dsl.module
 
 object FlavoredModule {
     val flavoredModule = module {
-        viewModel(named(Constants.MY_VIEW_MODEL)) { params ->
-            MyFlavoredViewModel(params.get())
-        } bind MyViewModel::class
+        viewModel<MyViewModel>(named(Constants.MY_VIEW_MODEL), override = true) { (param: String) ->
+            MyFlavoredViewModel(param)
+        }
     }
 }

@@ -48,8 +48,10 @@ android {
 
 dependencies {
 
-    implementation "io.insert-koin:koin-core:3.2.2"
-    implementation "io.insert-koin:koin-android:3.3.0"
+    def koin_version = "2.1.6"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-viewmodel:$koin_version"
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'

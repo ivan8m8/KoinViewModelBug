@@ -7,8 +7,8 @@ import org.koin.dsl.module
 object MainModule {
 
     val module = module {
-        viewModel(named(Constants.MY_VIEW_MODEL)) { params ->
-            MyViewModel(params.get())
+        viewModel(named(Constants.MY_VIEW_MODEL)) { (param: String) ->
+            MyViewModel(param)
         }
     }
 }

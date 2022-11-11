@@ -8,7 +8,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import io.github.ivan8m8.koinviewmodelbug.databinding.FragmentFlavoredBinding
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
 class FlavoredFragment: Fragment() {
@@ -19,21 +18,12 @@ class FlavoredFragment: Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: MyFlavoredViewModel by viewModel(
-        named(Constants.MY_VIEW_MODEL),
-        {
-            requireParentFragment()
-                .childFragmentManager
-                .findFragmentByTag(MyFragment.TAG)!!
-        }
-    )
-
-//    private val viewModel: MyFlavoredViewModel by lazy {
-//        requireParentFragment()
-//            .childFragmentManager
-//            .findFragmentByTag(MyFragment.TAG)!!
-//            .getViewModel<MyViewModel>(named(Constants.MY_VIEW_MODEL)) as MyFlavoredViewModel
-//    }
+    private val viewModel: MyFlavoredViewModel by lazy {
+        requireParentFragment()
+            .childFragmentManager
+            .findFragmentByTag(MyFragment.TAG)!!
+            .getViewModel(named(Constants.MY_VIEW_MODEL))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
