@@ -1,5 +1,6 @@
 package io.github.ivan8m8.koinviewmodelbug
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,13 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import dagger.hilt.android.AndroidEntryPoint
+import io.github.ivan8m8.koinviewmodelbug.dagger.ViewModelFactory
 import io.github.ivan8m8.koinviewmodelbug.databinding.FragmentMyBinding
+import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-@AndroidEntryPoint
 class MyFragment : Fragment() {
 
     private var _binding: FragmentMyBinding? = null
@@ -22,7 +20,13 @@ class MyFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: MyViewModel by viewModels()
+    @Inject lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel by viewModels<MyViewModel> { viewModelFactory }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().applicationContext as MyApp).appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -25,7 +25,8 @@ open class ContainerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        displayFragments()
+        if (savedInstanceState == null)
+            displayFragments()
     }
 
     override fun onDestroyView() {
